@@ -1,99 +1,95 @@
-<!DOCTYPE html>
+
+      
+           
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAMPS-DELIGHTS</title>
+    <title>AI Chat Companion</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            text-align: center;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
-        body {
-            background-color: #ffebef;
-            text-align: center;
-            color: #ff1493;
-        }
-        header {
-            background: #ff1493;
+        .chat-container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
             padding: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
         }
-        nav {
+        .messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .input-container {
             margin-top: 10px;
         }
-        nav a {
+        input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #e91e63;
             color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        .button {
-            padding: 12px 25px;
-            background: white;
-            color: #ff1493;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: 0.3s;
-            border: 2px solid #ff1493;
-        }
-        .button:hover {
-            background: #ff1493;
-            color: white;
-        }
-        footer {
-            background: #ff1493;
-            padding: 15px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            font-size: 14px;
-            color: white;
+        button:hover {
+            background: #d81b60;
         }
     </style>
 </head>
 <body>
-    <header>
-        WELCOME TO NAMPS-DELIGHTS
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>Delicious Treats Just for You</h1>
-        <p>Explore our mouthwatering delights and satisfy your cravings.</p>
-        <a href="#" class="button">Order Now</a>
+    <div class="chat-container">
+        <h2>AI Chat Companion</h2>
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
-    <footer>
-        &copy; 2025 NAMPS-DELIGHTS | All Rights Reserved
-    </footer>
+
+    <script>
+        function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let message = inputField.value;
+            if (message.trim() === "") return;
+
+            let messagesDiv = document.getElementById("messages");
+            let userMessage = `<p><strong>You:</strong> ${message}</p>`;
+            messagesDiv.innerHTML += userMessage;
+
+            inputField.value = "";
+            setTimeout(() => {
+                let botReply = `<p><strong>AI:</strong> ${getBotResponse(message)}</p>`;
+                messagesDiv.innerHTML += botReply;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 500);
+        }
+
+        function getBotResponse(input) {
+            const responses = {
+                "hello": "Hi there! How can I help you?",
+                "how are you": "I'm just a bot, but I'm doing great! How about you?",
+                "bye": "Goodbye! Have a great day!",
+                "default": "I'm not sure how to respond to that."
+            };
+            input = input.toLowerCase();
+            return responses[input] || responses["default"];
+        }
+    </script>
 </body>
 </html>
-
-          
-          
-       
