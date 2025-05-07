@@ -147,6 +147,70 @@
             <button>Buy Now</button>
         </div>
     </div>
+      }
+
+    .slider-container {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      background: #ffe6f0;
+      padding: 20px 0;
+    }
+
+    .slider-track {
+      display: inline-block;
+      animation: glide 20s linear infinite;
+    }
+
+    .product {
+      display: inline-block;
+      margin: 0 30px;
+    }
+
+    .product img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .product img:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes glide {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <div class="slider-track">
+      <div class="product"><img src="lipstick.jpg" alt="Lipstick"></div>
+      <div class="product"><img src="foundation.jpg" alt="Foundation"></div>
+      <div class="product"><img src="mascara.jpg" alt="Mascara"></div>
+      <div class="product"><img src="blush.jpg" alt="Blush"></div>
+      <div class="product"><img src="liner.jpg" alt="Eyeliner"></div>
+      <div class="product"><img src="brushes.jpg" alt="Brushes"></div>
+        <!-- Duplicates for smooth looping -->
+      <div class="product"><img src="lipstick.jpg" alt="Lipstick"></div>
+      <div class="product"><img src="foundation.jpg" alt="Foundation"></div>
+       <div class="product"><img src="mascara.jpg" alt="Mascara"></div>
+      <div class="product"><img src="blush.jpg" alt="Blush"></div>
+      <div class="product"><img src="liner.jpg" alt="Eyeliner"></div>
+      <div class="product"><img src="brushes.jpg" alt="Brushes"></div>
+    </div>
+    </div>
+  </div>
+
+</body>
+</html>
 </body>
 </html>
 
