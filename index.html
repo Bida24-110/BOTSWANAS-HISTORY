@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Botswana Time Tales</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Comic Neue', sans-serif;
       background-color: #fff8f0;
-      color: #333;
       margin: 0;
-      padding: 0;
+      color: #333;
     }
+
     header {
       background-color: #fbd1a2;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
       border-bottom: 4px dashed #e89c5d;
     }
+
     header h1 {
       font-size: 2.5em;
+      margin: 0;
       color: #5a3e1b;
     }
+
     .mascot {
       text-align: center;
-      margin: 30px;
+      margin: 20px;
     }
+
     .mascot img {
       width: 150px;
+      border-radius: 50%;
     }
+
     .mascot p {
       background-color: #ffe2cc;
       display: inline-block;
       padding: 10px 20px;
       border-radius: 15px;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      margin-top: 10px;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
       max-width: 300px;
     }
-    .timeline {
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       padding: 20px;
-      max-width: 800px;
-      margin: auto;
     }
-    .event {
-      background: #fff2e6;
-      border-left: 6px solid #f4a261;
-      padding: 15px;
-      margin: 10px 0;
+
+    .card {
+      width: 200px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card img {
+      width: 100%;
       border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    .event h3 {
-      margin-top: 0;
-      color: #92400e;
+
+    .card:hover {
+      transform: scale(1.05);
     }
+
+    .card p {
+      background-color: #ffe2cc;
+      padding: 8px;
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+
     footer {
       background-color: #fbd1a2;
       text-align: center;
@@ -61,42 +85,106 @@
       font-size: 0.9em;
       border-top: 4px dashed #e89c5d;
     }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>🇧🇼 Botswana Time Tales</h1>
-  <p>History made cute & fun!</p>
+  <p>Explore history through pictures!</p>
 </header>
 
 <section class="mascot">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Suricata_suricatta_-Etosha%2C_Namibia-8.jpg/240px-Suricata_suricatta_-Etosha%2C_Namibia-8.jpg" alt="Cute Mascot Meerkat">
-  <p>Hi! I'm Tiko the Meerkat 🐾. Let's explore Botswana's amazing past!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Suricata_suricatta_-Etosha%2C_Namibia-8.jpg/240px-Suricata_suricatta_-Etosha%2C_Namibia-8.jpg" alt="Mascot Meerkat" />
+  <p>Hi! I'm Tiko 🐾. Click the pictures to learn fun facts!</p>
 </section>
 
-<section class="timeline">
-  <div class="event">
-    <h3>📜 Pre-Colonial Times</h3>
-    <p>Before 1800s, the Tswana people lived in chiefdoms with rich cultures and cattle-based economies.</p>
+<section class="gallery">
+  <div class="card" onclick="showModal('Pre-colonial Times', 'The Tswana people lived in chiefdoms and had rich traditions of cattle-keeping, trade, and storytelling.')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Tswana_hut.jpg/320px-Tswana_hut.jpg" alt="Pre-colonial Times">
+    <p>Pre-Colonial Life</p>
   </div>
-  <div class="event">
-    <h3>🇬🇧 British Protectorate (1885)</h3>
-    <p>Botswana (then Bechuanaland) became a British protectorate to avoid colonization by neighbors.</p>
+
+  <div class="card" onclick="showModal('British Protectorate (1885)', 'Botswana became a British protectorate to avoid colonization by the Boers and Cecil Rhodes.')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/British_Imperial_Flag.svg/320px-British_Imperial_Flag.svg.png" alt="British Rule">
+    <p>Protectorate Era</p>
   </div>
-  <div class="event">
-    <h3>🎉 Independence (1966)</h3>
-    <p>On Sept 30, 1966, Botswana became an independent nation with Seretse Khama as its first president!</p>
+
+  <div class="card" onclick="showModal('Independence (1966)', 'On Sept 30, 1966, Botswana gained independence with Seretse Khama as the first president.')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Botswana_Independence_Memorial.jpg/320px-Botswana_Independence_Memorial.jpg" alt="Independence">
+    <p>Independence Day</p>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalContent"></p>
+  </div>
+</div>
 
 <footer>
   Made with ❤️ by a proud Motswana | © 2025 Botswana Time Tales
 </footer>
 
+<script>
+  function showModal(title, content) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalContent').textContent = content;
+    document.getElementById('infoModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('infoModal').style.display = 'none';
+  }
+
+  // Close modal on outside click
+  window.onclick = function(event) {
+    const modal = document.getElementById('infoModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+</script>
+
 </body>
 </html>
 
-     
-     
-           
+
+    
+
+
