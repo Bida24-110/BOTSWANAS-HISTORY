@@ -3,26 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Botswana Culture</title>
+  <title>Botswana Culture - Video Slideshow</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet" />
   <style>
-    #bgVideo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
-  opacity: 0.4; 
-}
-
+    /* General styles */
     body {
       font-family: 'Comic Neue', cursive;
+      margin: 0;
+      padding: 0;
       background-color: #6ec1e4;
       color: #000;
-      padding: 0;
-      margin: 0;
     }
 
     header {
@@ -33,11 +23,12 @@
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       background: white;
       border-radius: 15px;
       padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
@@ -45,10 +36,48 @@
       text-align: center;
     }
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6em;
-      text-align: center;
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-slide {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .control-btn {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 1.5em;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .control-btn:hover {
+      background-color: #6ec1e4;
     }
 
     .back-link {
@@ -63,15 +92,19 @@
     .back-link:hover {
       text-decoration: underline;
     }
+
+    /* Responsive design adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px;
+      }
+      main {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <video autoplay muted loop id="bg-video">
-  <source src="bots.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
-
-
   <header>
     <h1>🎉 Botswana Culture</h1>
     <p>Traditions, Food, Music & More</p>
@@ -81,12 +114,60 @@
     <h2>Our Beautiful Culture</h2>
     <p>
       Botswana is rich in cultural traditions. We celebrate through music, dance (like the Tsutsube), and traditional dress.
-      Families gather to share sorghum meals, tell stories, and honor elders. Our values of **botho (respect)** guide how we live together.
+      Families gather to share sorghum meals, tell stories, and honor elders. Our values of <strong>botho (respect)</strong> guide how we live together.
     </p>
 
+    <!-- Video Slideshow -->
+    <div class="video-container">
+      <video class="video-slide" autoplay muted loop>
+        <source src="dance.mp4" type="video/mp4">
+      </video>
+      <video class="video-slide">
+        <source src="cul.mp4" type="video/mp4">
+      </video>
+      <video class="video-slide">
+        <source src="ture.mp4" type="video/mp4">
+      </video>
+
+      <!-- Navigation Controls -->
+      <div class="controls">
+        <button class="control-btn" onclick="prevSlide()">&#10094;</button>
+        <button class="control-btn" onclick="nextSlide()">&#10095;</button>
+      </div>
+    </div>
+
+    <!-- Back Link -->
     <a href="index.html" class="back-link">← Back to Home</a>
   </main>
 
+  <script>
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.video-slide');
+
+    // Show the first video
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    // Show the previous video
+    function prevSlide() {
+      currentSlideIndex = (currentSlideIndex === 0) ? slides.length - 1 : currentSlideIndex - 1;
+      showSlide(currentSlideIndex);
+    }
+
+    // Show the next video
+    function nextSlide() {
+      currentSlideIndex = (currentSlideIndex === slides.length - 1) ? 0 : currentSlideIndex + 1;
+      showSlide(currentSlideIndex);
+    }
+
+    // Initially show the first video
+    showSlide(currentSlideIndex);
+  </script>
 </body>
 </html>
- 
+
+  
+   
