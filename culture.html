@@ -15,6 +15,47 @@
   background-color: #6ec1e4;
   color: #000;
 }
+    .slideshow-container {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  border: 3px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  border-radius: 10px;
+}
+
+/* Show the first image by default */
+.slide:first-child {
+  display: block;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 2em;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+  background-color: #000;
+}
+
     
    
   
@@ -121,24 +162,15 @@
       Families gather to share sorghum meals, tell stories, and honor elders. Our values of <strong>botho (respect)</strong> guide how we live together.
     </p>
 
-    <!-- Video Slideshow -->
-    <div class="video-container">
-      <video class="video-slide" autoplay muted loop>
-        <source src="sarwa.jpg" type="video/mp4">
-      </video>
-      <video class="video-slide">
-        <source src="mapa.jpg" type="video/mp4">
-      </video>
-      <video class="video-slide">
-        <source src="ips.jpg" type="video/mp4">
-      </video>
+   <div class="slideshow-container">
+  <img class="slide" src="sarwa.jpg" alt="Image 1">
+  <img class="slide" src="mapa.jpg" alt="Image 2">
+  <img class="slide" src="ips.jpg" alt="Image 3">
 
-      <!-- Navigation Controls -->
-      <div class="controls">
-        <button class="control-btn" onclick="prevSlide()">&#10094;</button>
-        <button class="control-btn" onclick="nextSlide()">&#10095;</button>
-      </div>
-    </div>
+  <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="next" onclick="changeSlide(1)">&#10095;</button>
+</div>
+
 
     <!-- Back Link -->
     <a href="index.html" class="back-link">← Back to Home</a>
@@ -170,7 +202,24 @@
     // Initially show the first video
     showSlide(currentSlideIndex);
   </script>
+  <script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = (i === index) ? "block" : "none";
+    });
+  }
+
+  function changeSlide(step) {
+    currentSlide = (currentSlide + step + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+</script>
+
 </body>
+  
 </html>
 
   
