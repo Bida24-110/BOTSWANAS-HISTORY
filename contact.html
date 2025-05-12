@@ -8,14 +8,15 @@
   <style>
     body {
       font-family: 'Comic Neue', cursive;
-      background-color: #6ec1e4;
+      background: url("scenery.jfif") no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
       padding: 0;
       color: #000;
     }
 
     header {
-      background-color: #000;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent header background */
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -87,12 +88,6 @@
   </style>
 </head>
 <body>
-  body {
-  background: url("scenery.jfif") no-repeat center center fixed;
-  background-size: cover;
-}
-
-
   <header>
     <h1>Contact Us 📬</h1>
     <p>Reach out to the Time Tales team!</p>
@@ -103,30 +98,30 @@
 
     <h2>Send a Message</h2>
 
-  
+    <form action="https://formspree.io/f/xdkglyjn" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
 
     <a href="index.html" class="back-link">← Back to Home</a>
-  </main><form action="https://formspree.io/f/xdkglyjn" method="POST">
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
-  <button type="submit">Send Message</button>
-</form>
-<script>
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (e) => {
-    setTimeout(() => {
-      alert("🎉 Thank you! Your message has been sent.");
-    }, 100);
-  });
-</script>
+  </main>
 
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (e) => {
+      setTimeout(() => {
+        alert("🎉 Thank you! Your message has been sent.");
+      }, 100);
+    });
+  </script>
 
 </body>
 </html>
 
-  
+     
    
      
-    
+  
 
