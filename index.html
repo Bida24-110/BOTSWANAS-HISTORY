@@ -1,233 +1,200 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Botswana Time Tales</title>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
-<style>
-  #bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-    object-fit: cover;
-    opacity: 0.8;  
-  }
+  <style>
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.8;
+    }
 
-  body {
-    font-family: 'Comic Neue', sans-serif;
-    background-color: #e1f5fe;
-    margin: 0;
-    color: #000;
-  }
+    body {
+      font-family: 'Comic Neue', sans-serif;
+      background-color: #e1f5fe;
+      margin: 0;
+      color: #000;
+    }
 
-  header {
-    background-color: #6ec1e4;
-    text-align: center;
-    padding: 20px;
-    border-bottom: 4px solid #000;
-    color: #000;
-  }
+    header {
+      background-color: #6ec1e4;
+      text-align: center;
+      padding: 20px;
+      border-bottom: 4px solid #000;
+      color: #000;
+    }
 
-  header h1 {
-    font-size: 2.5em;
-    margin: 0;
-  }
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
 
-  .mascot {
-    text-align: center;
-    margin: 20px;
-  }
+    nav a {
+      margin: 0 10px;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-  .mascot img {
-    width: 150px;
-    border-radius: 50%;
-    border: 4px solid #000;
-  }
+    .mascot {
+      text-align: center;
+      margin: 20px;
+    }
 
-  .mascot p {
-    background-color: #ffffff;
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 15px;
-    margin-top: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    border: 2px solid #000;
-  }
+    .mascot img {
+      width: 150px;
+      border-radius: 50%;
+      border: 4px solid #000;
+    }
 
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
+    .mascot p {
+      background-color: #ffffff;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 15px;
+      margin-top: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      border: 2px solid #000;
+    }
 
-  .card {
-    width: 220px;
-    min-height: 320px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #ffffff;
-    border: 2px solid #000;
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 6px 6px 0px #000;
-  }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-  .card img {
-    height: 160px;         
-    object-fit: cover;     
-    border-radius: 10px;
-  }
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border: 2px solid #000;
+      border-radius: 15px;
+      background-color: #ffffff;
+      box-shadow: 6px 6px 0 #000;
+      padding: 20px;
+    }
 
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 10px 10px 0px #000;
-  }
+    .timeline-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #000;
+    }
 
-  .card p {
-    background-color: #6ec1e4;
-    padding: 8px;
-    border-radius: 10px;
-    color: #000;
-    margin-top: 10px;
-    font-weight: bold;
-  }
+    .timeline-text h3 {
+      margin: 0 0 10px;
+      font-size: 1.5em;
+      color: #000;
+    }
 
-  footer {
-    background-color: #000;
-    text-align: center;
-    padding: 15px;
-    font-size: 0.9em;
-    color: #fff;
-  }
+    .timeline-text p {
+      margin: 0;
+      font-size: 1em;
+      color: #333;
+    }
 
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background: rgba(0,0,0,0.6);
-  }
+    .back-home-btn {
+      background-color: #6ec1e4;
+      color: #000;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1em;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 40px auto;
+      text-align: center;
+    }
 
-  .modal-content {
-    background: #ffffff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-    border: 3px solid #000;
-  }
+    .back-home-btn:hover {
+      background-color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 6px 6px 0px #000;
+    }
 
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 22px;
-    cursor: pointer;
-    color: #000;
-  }
-
-  #loader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #6ec1e4;
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid #ffffff;
-    border-top: 6px solid #000000;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-</style>
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-<video autoplay muted loop id="bg-video">
-  <source src="dance.mp4" type="video/mp4">
-</video>
+  <video autoplay muted loop id="bg-video">
+    <source src="dance.mp4" type="video/mp4">
+  </video>
 
-<header>
-  <h1>🇧🇼 Botswana Time Tales</h1>
-  <p>Celebrate history, proudly and playfully!</p>
- <nav>
-  <a href="about.html">About</a> |
-  <a href="contact.html">Contact</a> |
-  <a href="culture.html">Culture</a> |
-  <a href="wildlife.html">Timeline</a>
-</nav>
+  <header>
+    <h1>🇧🇼 Botswana Time Tales</h1>
+    <p>Celebrate history, proudly and playfully!</p>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="culture.html">Culture</a> |
+      <a href="wildlife.html">Timeline</a>
+    </nav>
+  </header>
 
-</header>
+  <section class="mascot">
+    <img src="tiku.jpg" alt="Mascot Meerkat" />
+    <p>Hi! I'm Tiko 🐾. Explore the timeline below to learn fun facts!</p>
+  </section>
 
-<section class="mascot">
-  <img src="tiku.jpg" alt="Mascot Meerkat" />
-  <p>Hi! I'm Tiko 🐾. Click the pictures to learn fun facts!</p>
-</section>
+  <section class="timeline">
+    <div class="timeline-item">
+      <img src="pre.jpg" alt="Pre-colonial Times">
+      <div class="timeline-text">
+        <h3>Pre-Colonial Times</h3>
+        <p>The Tswana people lived in chiefdoms and had rich traditions of cattle-keeping, trade, and storytelling.</p>
+      </div>
+    </div>
 
-<section class="gallery">
-  <div class="card" onclick="showModal('Pre-colonial Times', 'The Tswana people lived in chiefdoms and had rich traditions of cattle-keeping, trade, and storytelling.')">
-    <img src="pre.jpg" alt="Pre-colonial Times">
-    <p>Pre-Colonial Life</p>
+    <div class="timeline-item">
+      <img src="era.jpg" alt="British Protectorate">
+      <div class="timeline-text">
+        <h3>British Protectorate (1885)</h3>
+        <p>Botswana became a British protectorate to avoid colonization by the Boers and Cecil Rhodes.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <img src="ian.jpg" alt="Independence">
+      <div class="timeline-text">
+        <h3>Independence (1966)</h3>
+        <p>On Sept 30, 1966, Botswana gained independence with Seretse Khama as the first president.</p>
+      </div>
+    </div>
+  </section>
+
+  <div style="text-align: center;">
+    <a href="index.html" class="back-home-btn">🏠 Back Home</a>
   </div>
 
-  <div class="card" onclick="showModal('British Protectorate (1885)', 'Botswana became a British protectorate to avoid colonization by the Boers and Cecil Rhodes.')">
-    <img src="era.jpg" alt="British Rule">
-    <p>Protectorate Era</p>
-  </div>
-
-  <div class="card" onclick="showModal('Independence (1966)', 'On Sept 30, 1966, Botswana gained independence with Seretse Khama as the first president.')">
-    <img src="ian.jpg" alt="Independence">
-    <p>Independence Day</p>
-  </div>
-</section>
-
-<!-- Modal -->
-<div id="infoModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h2 id="modalTitle"></h2>
-    <p id="modalContent"></p>
-  </div>
-</div>
-
-<footer>
-  Made with 🇧🇼 pride by a student of history | © 2025 Botswana Time Tales
-</footer>
-
-</script>
-
+  <footer>
+    Made with 🇧🇼 pride by a student of history | © 2025 Botswana Time Tales
+  </footer>
 </body>
 </html>
+
 
 
   
